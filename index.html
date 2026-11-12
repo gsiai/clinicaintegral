@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Clínica Integral - Atención médica de excelencia en oftalmología, otorrinolaringología, cardiología, traumatología y urología.">
+<meta name="theme-color" content="#0a4d8c">
+<title>Clínica Integral - Salud y Bienestar</title>
+
+<!-- FAVICON SVG INLINE (cruz médica) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230a4d8c'/><path d='M26 14h12v36H26z M14 26h36v12H14z' fill='%23ffffff'/></svg>">
+<link rel="alternate icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230a4d8c'/><path d='M26 14h12v36H26z M14 26h36v12H14z' fill='%23ffffff'/></svg>">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --color-primary: #0a4d8c;
+    --color-primary-light: #1e88e5;
+    --color-accent: #4fc3f7;
+    --color-whatsapp: #25D366;
+    --color-whatsapp-hover: #1da851;
+    --color-text: #333;
+    --color-text-light: #666;
+    --color-bg: #f5f7fa;
+    --color-white: #ffffff;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 25px rgba(0,0,0,0.15);
+    --radius: 15px;
+    --transition: 0.3s ease;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    color: var(--color-white);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
+  }
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .logo {
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  .logo i { color: var(--color-accent); margin-right: 8px; }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  nav a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition);
+    position: relative;
+  }
+  nav a:hover, nav a:focus { color: var(--color-accent); }
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width var(--transition);
+  }
+  nav a:hover::after { width: 100%; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(rgba(10,77,140,0.85), rgba(30,136,229,0.85)),
+                url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1600&q=80') center/cover no-repeat;
+    color: var(--color-white);
+    text-align: center;
+    padding: 6rem 2rem;
+  }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1rem; }
+  .hero p { font-size: clamp(1rem, 2vw, 1.3rem); max-width: 700px; margin: 0 auto 2rem; }
+  .btn {
+    background: var(--color-accent);
+    color: var(--color-primary);
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+  .btn:hover, .btn:focus {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* SECTIONS */
+  section { padding: 4rem 2rem; }
+  .section-title {
+    text-align: center;
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+  .section-subtitle {
+    text-align: center;
+    color: var(--color-text-light);
+    margin-bottom: 3rem;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* ÁREAS */
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .area-card {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--radius);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition);
+    border-top: 4px solid var(--color-primary-light);
+  }
+  .area-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+  .area-card i {
+    font-size: 3rem;
+    color: var(--color-primary-light);
+    margin-bottom: 1rem;
+  }
+  .area-card h3 { color: var(--color-primary); margin-bottom: 0.5rem; }
+
+  /* NOSOTROS */
+  .nosotros { background: var(--color-white); }
+  .nosotros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  .nosotros-card {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    padding: 2rem;
+    border-radius: var(--radius);
+    border-left: 5px solid var(--color-primary-light);
+  }
+  .nosotros-card h3 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  .nosotros-card i {
+    font-size: 2.5rem;
+    color: var(--color-primary-light);
+    margin-bottom: 1rem;
+  }
+
+  /* DIRECTORIO */
+  .directorio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+  .doctor-card {
+    background: var(--color-white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition);
+  }
+  .doctor-card:hover { transform: translateY(-5px); }
+  .doctor-img {
+    height: 240px;
+    background-size: cover;
+    background-position: center;
+    background-color: #ddd;
+    position: relative;
+  }
+  .doctor-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 60%, rgba(0,0,0,0.3));
+  }
+  .doctor-info { padding: 1.5rem; }
+  .doctor-info h3 { color: var(--color-primary); margin-bottom: 0.3rem; }
+  .especialidad {
+    color: var(--color-primary-light);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+  .doctor-info p { font-size: 0.9rem; margin-bottom: 0.3rem; color: #555; }
+  .doctor-info a { color: #555; text-decoration: none; }
+  .doctor-info a:hover { color: var(--color-primary-light); }
+  .whatsapp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--color-whatsapp);
+    color: var(--color-white);
+    text-align: center;
+    padding: 0.7rem;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 1rem;
+    font-weight: bold;
+    transition: background var(--transition);
+  }
+  .whatsapp-btn:hover, .whatsapp-btn:focus { background: var(--color-whatsapp-hover); }
+
+  /* SERVICIOS */
+  .servicios { background: var(--color-white); }
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  .servicio-item {
+    position: relative;
+    height: 280px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    background: #ddd;
+  }
+  .servicio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .servicio-item:hover img,
+  .servicio-item:focus-within img { transform: scale(1.15); }
+  .servicio-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    color: var(--color-white);
+    padding: 1.5rem;
+  }
+  .servicio-overlay h3 { font-size: 1.4rem; margin-bottom: 0.3rem; }
+  .servicio-overlay p { font-size: 0.9rem; }
+
+  /* MODAL CARRUSEL */
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+  .modal.active { display: flex; }
+  .modal-content {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+    background: rgba(20,20,20,0.95);
+    border-radius: var(--radius);
+    padding: 2rem;
+    max-height: 95vh;
+    overflow-y: auto;
+  }
+  .modal-content img {
+    max-width: 100%;
+    max-height: 60vh;
+    border-radius: 10px;
+    object-fit: contain;
+  }
+  .modal-title {
+    color: var(--color-white);
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  }
+  .modal-desc {
+    color: #ccc;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .modal-counter {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+  .modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: var(--color-white);
+    font-size: 2rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1;
+    z-index: 10;
+  }
+  .modal-nav {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.2);
+    color: var(--color-white);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background var(--transition);
+  }
+  .modal-nav:hover, .modal-nav:focus { background: rgba(255,255,255,0.4); }
+  .modal-prev { left: 15px; }
+  .modal-next { right: 15px; }
+  .modal-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--color-whatsapp);
+    color: var(--color-white);
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 1rem;
+    transition: background var(--transition), transform var(--transition);
+  }
+  .modal-whatsapp:hover, .modal-whatsapp:focus {
+    background: var(--color-whatsapp-hover);
+    transform: scale(1.05);
+  }
+
+  /* CONTACTO */
+  .contacto {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    color: var(--color-white);
+  }
+  .contacto .section-title { color: var(--color-white); }
+  .contacto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    text-align: center;
+  }
+  .contacto-item i {
+    font-size: 2.5rem;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+  .contacto-item h3 { margin-bottom: 0.5rem; }
+  .contacto-item a { color: var(--color-white); text-decoration: none; }
+  .contacto-item a:hover { color: var(--color-accent); }
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .social-icons a {
+    width: 45px;
+    height: 45px;
+    background: rgba(255,255,255,0.15);
+    color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    text-decoration: none;
+    transition: background var(--transition), transform var(--transition);
+  }
+  .social-icons a:hover, .social-icons a:focus {
+    background: var(--color-accent);
+    color: var(--color-primary);
+    transform: translateY(-3px);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #062a4d;
+    color: var(--color-white);
+    padding: 2.5rem 2rem 1.5rem;
+  }
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  .footer-col h4 {
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.5rem; }
+  .footer-col a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+  .footer-col a:hover, .footer-col a:focus { color: var(--color-accent); }
+  .footer-col p { color: #ccc; font-size: 0.9rem; }
+  .footer-bottom {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: #aaa;
+    font-size: 0.9rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    nav ul {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      gap: 1rem;
+      padding-top: 1rem;
+    }
+    nav ul.active { display: flex; }
+    .modal-prev { left: 5px; }
+    .modal-next { right: 5px; }
+    .modal-nav { width: 40px; height: 40px; font-size: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="nav-container">
+    <div class="logo"><i class="fas fa-hospital" aria-hidden="true"></i>Clínica Integral</div>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav aria-label="Navegación principal">
+      <ul id="navMenu">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#areas">Áreas</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#directorio">Doctores</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="inicio" aria-labelledby="hero-title">
+    <h1 id="hero-title">Bienvenidos a Clínica Integral</h1>
+    <p>Atención médica de excelencia con las mejores especialidades y profesionales comprometidos con tu salud.</p>
+    <a href="#directorio" class="btn">Reserva tu Cita</a>
+  </section>
+
+  <!-- ÁREAS DE ATENCIÓN -->
+  <section id="areas" aria-labelledby="areas-title">
+    <div class="container">
+      <h2 class="section-title" id="areas-title">Nuestras Áreas de Atención</h2>
+      <p class="section-subtitle">Especialidades médicas con tecnología de vanguardia</p>
+      <div class="areas-grid">
+        <article class="area-card">
+          <i class="fas fa-eye" aria-hidden="true"></i>
+          <h3>Oftalmología</h3>
+          <p>Cuidado completo de la salud visual, diagnóstico y tratamiento de enfermedades oculares.</p>
+        </article>
+        <article class="area-card">
+          <i class="fas fa-head-side-cough" aria-hidden="true"></i>
+          <h3>Otorrinolaringología</h3>
+          <p>Atención especializada en oído, nariz y garganta, con equipos de última generación.</p>
+        </article>
+        <article class="area-card">
+          <i class="fas fa-heartbeat" aria-hidden="true"></i>
+          <h3>Cardiología</h3>
+          <p>Diagnóstico y tratamiento integral de enfermedades del corazón y sistema cardiovascular.</p>
+        </article>
+        <article class="area-card">
+          <i class="fas fa-bone" aria-hidden="true"></i>
+          <h3>Traumatología</h3>
+          <p>Tratamiento de lesiones musculoesqueléticas, fracturas y rehabilitación física.</p>
+        </article>
+        <article class="area-card">
+          <i class="fas fa-user-md" aria-hidden="true"></i>
+          <h3>Urología</h3>
+          <p>Atención especializada del sistema urinario y aparato reproductor masculino.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section class="nosotros" id="nosotros" aria-labelledby="nosotros-title">
+    <div class="container">
+      <h2 class="section-title" id="nosotros-title">Nosotros</h2>
+      <p class="section-subtitle">Comprometidos con tu bienestar integral</p>
+      <div class="nosotros-grid">
+        <article class="nosotros-card">
+          <i class="fas fa-bullseye" aria-hidden="true"></i>
+          <h3>Misión</h3>
+          <p>Brindar servicios médicos integrales de alta calidad, con un equipo humano comprometido, tecnología avanzada y un enfoque centrado en el paciente, promoviendo la salud y el bienestar de nuestra comunidad.</p>
+        </article>
+        <article class="nosotros-card">
+          <i class="fas fa-eye" aria-hidden="true"></i>
+          <h3>Visión</h3>
+          <p>Ser la clínica integral líder en la región, reconocida por la excelencia en la atención médica, la innovación tecnológica y el trato humano, formando profesionales comprometidos con la salud de las personas.</p>
+        </article>
+        <article class="nosotros-card">
+          <i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+          <h3>Valores</h3>
+          <p>Ética profesional, compromiso con el paciente, trabajo en equipo, innovación constante y responsabilidad social, pilares fundamentales de nuestra práctica diaria.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECTORIO -->
+  <section id="directorio" aria-labelledby="directorio-title">
+    <div class="container">
+      <h2 class="section-title" id="directorio-title">Nuestro Directorio Médico</h2>
+      <p class="section-subtitle">Profesionales especializados listos para atenderte</p>
+      <div class="directorio-grid" id="directorioGrid"></div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="servicios" id="servicios" aria-labelledby="servicios-title">
+    <div class="container">
+      <h2 class="section-title" id="servicios-title">Nuestros Servicios</h2>
+      <p class="section-subtitle">Haz clic en cualquier imagen para ver el carrusel completo</p>
+      <div class="servicios-grid" id="serviciosGrid"></div>
+    </div>
+  </section>
+
+  <!-- MODAL CARRUSEL -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Cerrar" onclick="cerrarModal()">&times;</button>
+      <button class="modal-nav modal-prev" aria-label="Imagen anterior" onclick="cambiarImagen(-1)">
+        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+      </button>
+      <img id="modalImg" src="" alt="" loading="lazy">
+      <button class="modal-nav modal-next" aria-label="Imagen siguiente" onclick="cambiarImagen(1)">
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+      </button>
+      <h3 class="modal-title" id="modalTitle"></h3>
+      <p class="modal-desc" id="modalDesc"></p>
+      <p class="modal-counter" id="modalCounter"></p>
+      <a href="#" class="modal-whatsapp" id="modalWhatsapp" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        <span id="modalWhatsappText">Contactar Especialista</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- CONTACTO -->
+  <section class="contacto" id="contacto" aria-labelledby="contacto-title">
+    <div class="container">
+      <h2 class="section-title" id="contacto-title">Contáctanos</h2>
+      <p class="section-subtitle" style="color:#bbdefb;">Estamos aquí para atenderte</p>
+      <div class="contacto-grid">
+        <div class="contacto-item">
+          <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+          <h3>Dirección</h3>
+          <p>Av. Principal #123<br>Col. Centro, Ciudad</p>
+        </div>
+        <div class="contacto-item">
+          <i class="fas fa-phone" aria-hidden="true"></i>
+          <h3>Teléfonos</h3>
+          <p><a href="tel:+525551234500">+52 555 123 4500</a></p>
+          <p><a href="tel:+525559876543">+52 555 987 6543</a></p>
+        </div>
+        <div class="contacto-item">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          <h3>Correo</h3>
+          <p><a href="mailto:contacto@clinicaintegral.com">contacto@clinicaintegral.com</a></p>
+          <p><a href="mailto:citas@clinicaintegral.com">citas@clinicaintegral.com</a></p>
+        </div>
+        <div class="contacto-item">
+          <i class="fas fa-clock" aria-hidden="true"></i>
+          <h3>Horario</h3>
+          <p>Lun - Vie: 8:00 - 20:00</p>
+          <p>Sáb: 9:00 - 14:00</p>
+        </div>
+      </div>
+      <div class="social-icons" aria-label="Redes sociales">
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+        <a href="https://wa.me/525551234500" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+        <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-col">
+      <h4><i class="fas fa-hospital" aria-hidden="true"></i> Clínica Integral</h4>
+      <p>Atención médica de excelencia con las mejores especialidades y profesionales comprometidos con tu salud.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Menú Principal</h4>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#areas">Áreas de Atención</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#directorio">Directorio Médico</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Especialidades</h4>
+      <ul>
+        <li><a href="#areas">Oftalmología</a></li>
+        <li><a href="#areas">Otorrinolaringología</a></li>
+        <li><a href="#areas">Cardiología</a></li>
+        <li><a href="#areas">Traumatología</a></li>
+        <li><a href="#areas">Urología</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+525551234500">+52 555 123 4500</a></li>
+        <li><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:contacto@clinicaintegral.com">contacto@clinicaintegral.com</a></li>
+        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Av. Principal #123</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Clínica Integral &copy; 2026 Todos los derechos reservados</p>
+  </div>
+</footer>
+
+<script>
+  'use strict';
+
+  // ============================================================
+  // DATOS DE DOCTORES POR ESPECIALIDAD
+  // ============================================================
+  const doctores = {
+    oftalmologia: {
+      nombre: 'Dra. María González',
+      especialidad: 'Oftalmología',
+      icono: 'fa-eye',
+      telefono: '525551234501',
+      email: 'm.gonzalez@clinicaintegral.com',
+      foto: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&q=80'
+    },
+    otorrino: {
+      nombre: 'Dr. Carlos Ramírez',
+      especialidad: 'Otorrinolaringología',
+      icono: 'fa-head-side-cough',
+      telefono: '525551234502',
+      email: 'c.ramirez@clinicaintegral.com',
+      foto: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500&q=80'
+    },
+    cardiologia: {
+      nombre: 'Dra. Laura Mendoza',
+      especialidad: 'Cardiología',
+      icono: 'fa-heartbeat',
+      telefono: '525551234503',
+      email: 'l.mendoza@clinicaintegral.com',
+      foto: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=500&q=80'
+    },
+    traumatologia: {
+      nombre: 'Dr. Javier Torres',
+      especialidad: 'Traumatología',
+      icono: 'fa-bone',
+      telefono: '525551234504',
+      email: 'j.torres@clinicaintegral.com',
+      foto: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=500&q=80'
+    },
+    urologia: {
+      nombre: 'Dr. Roberto Silva',
+      especialidad: 'Urología',
+      icono: 'fa-user-md',
+      telefono: '525551234505',
+      email: 'r.silva@clinicaintegral.com',
+      foto: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=500&q=80'
+    }
+  };
+
+  // ============================================================
+  // DATOS DE SERVICIOS - IMÁGENES ESPECÍFICAS POR ESPECIALIDAD
+  // URLs verificadas y temáticamente relacionadas
+  // ============================================================
+  const servicios = [
+    {
+      id: 'oftalmologia',
+      titulo: 'Oftalmología',
+      descripcion: 'Exámenes visuales, cirugía de cataratas, tratamiento de glaucoma y retinopatías.',
+      doctor: doctores.oftalmologia,
+      imagenes: [
+        { url: 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=900&q=80', alt: 'Examen oftalmológico profesional' },
+        { url: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=900&q=80', alt: 'Cirugía ocular especializada' },
+        { url: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=900&q=80', alt: 'Consulta de oftalmología' },
+        { url: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80', alt: 'Equipo médico oftalmológico' }
+      ]
+    },
+    {
+      id: 'otorrino',
+      titulo: 'Otorrinolaringología',
+      descripcion: 'Diagnóstico y tratamiento de oído, nariz y garganta con tecnología avanzada.',
+      doctor: doctores.otorrino,
+      imagenes: [
+        { url: 'https://images.unsplash.com/photo-1584467735815-f778f274e296?w=900&q=80', alt: 'Consulta de otorrinolaringología' },
+        { url: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=900&q=80', alt: 'Especialista en oído y garganta' },
+        { url: 'https://images.unsplash.com/photo-1579758629938-03d030f21593?w=900&q=80', alt: 'Endoscopía nasal' },
+        { url: 'https://images.unsplash.com/photo-1585435557343-3b092031a831?w=900&q=80', alt: 'Equipo de audición' }
+      ]
+    },
+    {
+      id: 'cardiologia',
+      titulo: 'Cardiología',
+      descripcion: 'Chequeos cardíacos, electrocardiogramas, ecocardiogramas y tratamientos especializados.',
+      doctor: doctores.cardiologia,
+      imagenes: [
+        { url: 'https://images.unsplash.com/photo-1628348070889-cb656235b4eb?w=900&q=80', alt: 'Electrocardiograma en consulta cardiológica' },
+        { url: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=900&q=80', alt: 'Estetoscopio y revisión cardíaca' },
+        { url: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=900&q=80', alt: 'Monitoreo cardíaco' },
+        { url: 'https://images.unsplash.com/photo-1551076805-e18795908587?w=900&q=80', alt: 'Ecocardiograma especializado' }
+      ]
+    },
+    {
+      id: 'traumatologia',
+      titulo: 'Traumatología',
+      descripcion: 'Tratamiento de fracturas, lesiones deportivas y rehabilitación integral.',
+      doctor: doctores.traumatologia,
+      imagenes: [
+        { url: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80', alt: 'Radiografía de fractura' },
+        { url: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=80', alt: 'Rehabilitación física' },
+        { url: 'https://images.unsplash.com/photo-1576091160394-ec81179d58e9?w=900&q=80', alt: 'Consulta de traumatología' },
+        { url: 'https://images.unsplash.com/photo-1609252924700-0b168251a2a5?w=900&q=80', alt: 'Tratamiento ortopédico' }
+      ]
+    },
+    {
+      id: 'urologia',
+      titulo: 'Urología',
+      descripcion: 'Atención especializada del sistema urinario con equipos de última tecnología.',
+      doctor: doctores.urologia,
+      imagenes: [
+        { url: 'https://images.unsplash.com/photo-1579758629938-03d030f21593?w=900&q=80', alt: 'Consulta urológica' },
+        { url: 'https://images.unsplash.com/photo-1585435557343-3b092031a831?w=900&q=80', alt: 'Ecografía renal' },
+        { url: 'https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?w=900&q=80', alt: 'Equipo médico urológico' },
+        { url: 'https://images.unsplash.com/photo-1576091160394-ec81179d58e9?w=900&q=80', alt: 'Diagnóstico urológico' }
+      ]
+    }
+  ];
+
+  // ============================================================
+  // RENDERIZADO DEL DIRECTORIO
+  // ============================================================
+  const directorioGrid = document.getElementById('directorioGrid');
+  Object.values(doctores).forEach(doc => {
+    const card = document.createElement('article');
+    card.className = 'doctor-card';
+    const whatsappMsg = encodeURIComponent(`Hola, deseo reservar una cita con ${doc.nombre}`);
+    card.innerHTML = `
+      <div class="doctor-img" style="background-image:url('${doc.foto}')" role="img" aria-label="Foto de ${doc.nombre}"></div>
+      <div class="doctor-info">
+        <h3>${doc.nombre}</h3>
+        <p class="especialidad"><i class="fas ${doc.icono}" aria-hidden="true"></i> ${doc.especialidad}</p>
+        <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+${doc.telefono}">+${doc.telefono}</a></p>
+        <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:${doc.email}">${doc.email}</a></p>
+        <a href="https://wa.me/${doc.telefono}?text=${whatsappMsg}" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Reservar cita con ${doc.nombre} por WhatsApp">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i> Reservar Cita
+        </a>
+      </div>
+    `;
+    directorioGrid.appendChild(card);
+  });
+
+  // ============================================================
+  // RENDERIZADO DE SERVICIOS
+  // ============================================================
+  const serviciosGrid = document.getElementById('serviciosGrid');
+  servicios.forEach((s, idx) => {
+    const item = document.createElement('article');
+    item.className = 'servicio-item';
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'button');
+    item.setAttribute('aria-label', `Ver galería de ${s.titulo}`);
+    item.innerHTML = `
+      <img src="${s.imagenes[0].url}" alt="${s.imagenes[0].alt}" loading="lazy">
+      <div class="servicio-overlay">
+        <h3>${s.titulo}</h3>
+        <p>${s.descripcion}</p>
+      </div>
+    `;
+    item.addEventListener('click', () => abrirModal(idx));
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        abrirModal(idx);
+      }
+    });
+    serviciosGrid.appendChild(item);
+  });
+
+  // ============================================================
+  // MODAL CARRUSEL
+  // ============================================================
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modalImg');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalCounter = document.getElementById('modalCounter');
+  const modalWhatsapp = document.getElementById('modalWhatsapp');
+  const modalWhatsappText = document.getElementById('modalWhatsappText');
+
+  let indiceActual = 0;
+  let servicioActual = null;
+  let ultimoElementoFocus = null;
+
+  function abrirModal(idx) {
+    ultimoElementoFocus = document.activeElement;
+    servicioActual = servicios[idx];
+    indiceActual = 0;
+    actualizarModal();
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    document.querySelector('.modal-close').focus();
+  }
+
+  function cerrarModal() {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (ultimoElementoFocus) ultimoElementoFocus.focus();
+  }
+
+  function cambiarImagen(dir) {
+    if (!servicioActual) return;
+    indiceActual = (indiceActual + dir + servicioActual.imagenes.length) % servicioActual.imagenes.length;
+    actualizarModal();
+  }
+
+  function actualizarModal() {
+    const imgData = servicioActual.imagenes[indiceActual];
+    modalImg.src = imgData.url;
+    modalImg.alt = imgData.alt;
+    modalTitle.textContent = servicioActual.titulo;
+    modalDesc.textContent = servicioActual.descripcion;
+    modalCounter.textContent = `${indiceActual + 1} / ${servicioActual.imagenes.length}`;
+
+    const doctor = servicioActual.doctor;
+    const msg = encodeURIComponent(`Hola ${doctor.nombre}, vi información sobre ${servicioActual.titulo} y deseo reservar una cita.`);
+    modalWhatsapp.href = `https://wa.me/${doctor.telefono}?text=${msg}`;
+    modalWhatsappText.textContent = `Contactar a ${doctor.nombre}`;
+    modalWhatsapp.setAttribute('aria-label', `Contactar por WhatsApp a ${doctor.nombre}`);
+  }
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) cerrarModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!modal.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft') cambiarImagen(-1);
+    if (e.key === 'ArrowRight') cambiarImagen(1);
+    if (e.key === 'Escape') cerrarModal();
+  });
+
+  // ============================================================
+  // MENÚ MÓVIL
+  // ============================================================
+  const menuToggle = document.getElementById('menuToggle');
+  const navMenu = document.getElementById('navMenu');
+  menuToggle.addEventListener('click', () => {
+    const expanded = navMenu.classList.toggle('active');
+    menuToggle.setAttribute('aria-expanded', expanded);
+  });
+
+  navMenu.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      navMenu.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>
+
+</body>
+</html>
